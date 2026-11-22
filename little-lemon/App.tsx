@@ -1,36 +1,61 @@
-import { ScrollView, StyleSheet } from 'react-native';
+// D:\Work\R6\little-lemon\App.tsx
+import React, { useState } from 'react';
+import {
+  View,
+  StyleSheet,
+  useColorScheme,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { LittleLemonFooter } from './components/LittleLemonFooter';
-import { LittleLemonHeader } from './components/LittleLemonHeader';
-import { WelcomeScreen } from './components/WelcomeScreen';
+import { StatusBar } from 'expo-status-bar';
+import { lightColors, darkColors } from './theme/palette';
+import LittleLemonHeader from './components/LittleLemonHeader';
+import LittleLemonFooter from './components/LittleLemonFooter';
+import LoginScreen from './screens/LoginScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
 
 export default function App() {
+  const [demoEmail, setDemoEmail] = useState<string | null>(null);
+
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const colors = isDark ? darkColors : lightColors;
+
   return (
       <SafeAreaProvider>
-        <SafeAreaView style={styles.screen} edges={['top', 'bottom']}>
-          <LittleLemonHeader />
-          <ScrollView
-              style={styles.scroll}
-              contentContainerStyle={styles.scrollContent}
-              indicatorStyle="white"
+        <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
+          <StatusBar style={isDark ? 'light' : 'dark'} />
+          <LittleLemonHeader colors={colors} />
+
+          <KeyboardAvoidingView
+              style={styles.content}
+              behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           >
-            <WelcomeScreen />
-          </ScrollView>
-          <LittleLemonFooter />
+            <View style={styles.content}>
+              {demoEmail === null ? (
+                  <LoginScreen colors={colors} onContinue={setDemoEmail} />
+              ) : (
+                  <WelcomeScreen
+                      colors={colors}
+                      email={demoEmail}
+                      onExit={() => setDemoEmail(null)}
+                  />
+              )}
+            </View>
+          </KeyboardAvoidingView>
+
+          <LittleLemonFooter colors={colors} />
         </SafeAreaView>
       </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: '#495E57',
-  },
-  scroll: {
+  safeArea: {
     flex: 1,
   },
-  scrollContent: {
-    paddingBottom: 28,
+  content: {
+    flex: 1,
   },
 });

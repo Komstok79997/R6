@@ -1,25 +1,39 @@
-import { StyleSheet, Text, View } from 'react-native';
+// D:\Work\R6\little-lemon\components\LittleLemonFooter.tsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import type { Palette } from '../theme/palette';
 
-export function LittleLemonFooter() {
-    const year = new Date().getFullYear();
+type LittleLemonFooterProps = {
+    colors: Palette;
+};
 
+export default function LittleLemonFooter({ colors }: LittleLemonFooterProps) {
     return (
-        <View style={styles.container}>
-            <Text style={styles.footerText}>© {year} Little Lemon</Text>
+        <View
+            style={[
+                styles.container,
+                {
+                    backgroundColor: colors.surface,
+                    borderTopColor: colors.border,
+                },
+            ]}
+        >
+            <Text style={[styles.footerText, { color: colors.text }]}>
+                © 2026 Little Lemon
+            </Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#EE9972',
         paddingVertical: 12,
         paddingHorizontal: 16,
         alignItems: 'center',
+        borderTopWidth: 1,
     },
     footerText: {
         fontSize: 15,
-        fontWeight: '600',
-        color: '#333333',
+        fontWeight: '500',
     },
 });
