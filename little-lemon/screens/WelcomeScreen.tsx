@@ -32,7 +32,7 @@ export default function WelcomeScreen({ colors, email, onExit }: WelcomeScreenPr
                         Little Lemon — це чарівний ресторанчик у районі, де подають прості страви та класичні коктейлі в жвавій і водночас невимушеній атмосфері.
                     </Text>
                     <Text style={[styles.demoText, { color: colors.muted }]}>
-                        Дані перевірено локально. Відкрито навчальний екран для {email}.
+                        Навчальний екран привітання для {email}.
                     </Text>
                 </View>
             </View>

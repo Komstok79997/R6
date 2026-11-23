@@ -1,4 +1,5 @@
 // theme/palette.ts
+
 export type Palette = {
     background: string;
     surface: string;
