@@ -10,6 +10,7 @@ import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import RemoteMenuScreen from '../screens/RemoteMenuScreen';
 import PreferencesScreen from '../screens/PreferencesScreen';
+import CustomersScreen from '../screens/CustomersScreen';
 import { useAppColors } from '../theme/useAppColors';
 import type { StackParamList } from './types';
 
@@ -47,6 +48,7 @@ function WelcomeRoute({ navigation, route }: WelcomeProps) {
             email={route.params.email}
             onExit={() => navigation.goBack()}
             onOpenPreferences={() => navigation.navigate('Preferences')}
+            onOpenCustomers={() => navigation.navigate('Customers')}
         />
     );
 }
@@ -76,6 +78,11 @@ export default function StackFlow() {
                 name="Preferences"
                 component={PreferencesScreen}
                 options={{ title: 'Налаштування' }}
+            />
+            <Stack.Screen
+                name="Customers"
+                component={CustomersScreen}
+                options={{ title: 'Клієнти' }}
             />
         </Stack.Navigator>
     );

@@ -6,6 +6,9 @@
     "userInterfaceStyle": "automatic",
     "assetBundlePatterns": [
       "**/*"
+    ],
+    "plugins": [
+      "expo-sqlite"
     ]
   }
 }

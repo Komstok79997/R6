@@ -16,6 +16,7 @@ type WelcomeScreenProps = {
     email: string;
     onExit: () => void;
     onOpenPreferences?: () => void;
+    onOpenCustomers?: () => void;
 };
 
 export default function WelcomeScreen({
@@ -23,6 +24,7 @@ export default function WelcomeScreen({
                                           email,
                                           onExit,
                                           onOpenPreferences,
+                                          onOpenCustomers,
                                       }: WelcomeScreenProps) {
     const { width } = useWindowDimensions();
     const wide = width >= 600;
@@ -69,6 +71,21 @@ export default function WelcomeScreen({
                     >
                         <Text style={dynamicStyles.buttonAccentText}>
                             Налаштування застосунку
+                        </Text>
+                    </Pressable>
+                )}
+
+                {onOpenCustomers !== undefined && (
+                    <Pressable
+                        accessibilityRole="button"
+                        onPress={onOpenCustomers}
+                        style={({ pressed }) => [
+                            dynamicStyles.buttonAccent,
+                            pressed && styles.buttonPressed,
+                        ]}
+                    >
+                        <Text style={dynamicStyles.buttonAccentText}>
+                            Клієнти ресторану
                         </Text>
                     </Pressable>
                 )}
