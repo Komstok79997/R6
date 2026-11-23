@@ -2,6 +2,7 @@ export type StackParamList = {
     Login: undefined;
     Welcome: { email: string };
     RemoteMenu: undefined;
+    Preferences: undefined;
 };
 
 export type TabParamList = {
