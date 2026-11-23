@@ -1,6 +1,7 @@
 export type StackParamList = {
     Login: undefined;
     Welcome: { email: string };
+    RemoteMenu: undefined;
 };
 
 export type TabParamList = {

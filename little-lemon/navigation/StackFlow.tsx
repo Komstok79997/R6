@@ -1,8 +1,10 @@
 import React from 'react';
+import { Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
+import RemoteMenuScreen from '../screens/RemoteMenuScreen';
 import { useAppColors } from '../theme/useAppColors';
 import type { StackParamList } from './types';
 
@@ -43,7 +45,17 @@ export default function StackFlow() {
             <Stack.Screen
                 name="Welcome"
                 component={WelcomeRoute}
-                options={{ title: 'Привітання' }}
+                options={({ navigation }) => ({
+                    title: 'Привітання',
+                    headerRight: () => (
+                        <Button title="Меню" onPress={() => navigation.navigate('RemoteMenu')} />
+                    ),
+                })}
+            />
+            <Stack.Screen
+                name="RemoteMenu"
+                component={RemoteMenuScreen}
+                options={{ title: 'Меню Little Lemon' }}
             />
         </Stack.Navigator>
     );
